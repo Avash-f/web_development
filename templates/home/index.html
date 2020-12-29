@@ -1,0 +1,296 @@
+{% extends 'home/home-layout.html' %}
+{% block home-content %}
+{% load static %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2">
+            <div class="header__logo">
+                <a href="/"><img src="" alt=""></a>
+            </div>
+        </div>
+        <div class="col-lg-10">
+            <div class="header__nav">
+                <nav class="header__menu">
+                    <ul>
+                        <li class="active"><a href="/index">Home</a></li>
+                        <li><a href="/car">Bikes</a></li>
+                        <li><a href="/car_details">Blog</a></li>
+                        <li><a href="/about">About</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                        <li><a href="register" class="btn btn-outline-success btn-sm" style="margin:5;">Register Customer</a></li>
+                        <li><a href="/login" class="btn btn-outline-danger btn-sm" style="margin:5;">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+<!-- Header Section End -->
+<!-- Hero Section Begin -->
+{% if request.session.customer_id %}
+<section class="hero spad set-bg" data-setbg="../../static/images/kawasaki/h2r_2.jpg">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-7">
+                <div class="hero__text">
+                    <div class="hero__text__title">
+                        <span>FIND YOUR DREAM BIKE</span>
+                        <h2>Kawasaki Ninja H2R</h2>
+                    </div>
+                    <div class="hero__text__price">
+                        <div class="car-model">Model 2019</div>
+                        <h2>$399</h2>
+                    </div>
+                    <a href="#" class="primary-btn"><img src="" alt=""> Test Drive</a>
+                    <a href="#" class="primary-btn more-btn">Learn More</a>
+                </div>
+            </div>
+            <div class="col-lg-5">
+                <div class="hero__tab">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link" data-toggle="tab" href="#tabs-2" role="tab">Buy Bike</a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane active" id="tabs-1" role="tabpanel">
+                            <div class="tab-pane" id="tabs-2" role="tabpanel">
+                                <div class="hero__tab__form">
+                                    <h2>Buy Your Dream Bike</h2>
+                                    <form method="POST" action="/order/create">
+                                        {% csrf_token %}
+                                        <div class="select-list">
+                                            <div class="select-list-item">
+                                                <p>Select Model</p>
+                                                <select>
+                                                    <option data-display=" ">Select Model</option>
+                                                    {% for data in kawasaki %}
+                                                    <option value="{{form.model}}">{{data.model}}</option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <button type="submit" class="site-btn">Order</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% else %}
+<h2>Please register!</h2>
+{% endif %}
+<!-- Hero Section End -->
+<!-- Feature Section Begin -->
+<section class="feature spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="feature__text">
+                    <div class="section-title">
+                        <span>Our Feature</span>
+                        <h2>We Are a Trusted Name In Auto</h2>
+                    </div>
+                    <div class="feature__text__desc">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
+                            ut labore et dolore magna aliqua. Quis ipsum suspendisse ultrices gravida. Risus commodo
+                            viverra maecenas accumsan lacus vel facilisis.</p>
+                    </div>
+                    <div class="feature__text__btn">
+                        <a href="#" class="primary-btn">About Us</a>
+                        <a href="#" class="primary-btn partner-btn">Our Partners</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Feature Section End -->
+<!-- Car Section Begin -->
+<section class="car spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="section-title">
+                    <span>Our Bike</span>
+                    <h2>Best Sports Bikes</h2>
+                </div>
+                <ul class="filter__controls">
+                    <li class="active" data-filter="*">Most Researched</li>
+                    <li data-filter=".sale">Latest on sale</li>
+                </ul>
+            </div>
+        </div>
+        <div class="row car-filter">
+            <div class="col-lg-3 col-md-4 col-sm-6 mix">
+                <div class="car__item">
+                    <div class="car__item__pic__slider owl-carousel">
+                        <img src="{% static 'images/h2/h2 5.jpg' %}" alt="">
+                        <img src="{% static 'images/h2/h2 4.jpg' %}" alt="">
+                        <img src="{% static 'images/h2/h2 3.jpg' %}" alt="">
+                        <img src="{% static 'images/h2/h2 1.jpg' %}" alt="">
+                    </div>
+                    <div class="car__item__text">
+                        <div class="car__item__text__inner">
+                            <div class="label-date">2016</div>
+                            <h5><a href="#">Porsche cayenne turbo s</a></h5>
+                            <ul>
+                                <li><span>35,000</span> mi</li>
+                                <li>Auto</li>
+                                <li><span>700</span> hp</li>
+                            </ul>
+                        </div>
+                        <div class="car__item__price">
+                            <span class="car-option">For Sale</span>
+                            <h6>$218<span>/Month</span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
+                <div class="car__item">
+                    <div class="car__item__pic__slider owl-carousel">
+                        <img src="{% static 'images/h2r/h2r 5.jpg' %}" alt="">
+                        <img src="{% static 'images/h2r/h2r 4.jpg' %}" alt="">
+                        <img src="{% static 'images/h2r/h2r 3.jpg' %}" alt="">
+                        <img src="{% static 'images/h2r/h2r 2.jpg' %}" alt="">
+                    </div>
+                    <div class="car__item__text">
+                        <div class="car__item__text__inner">
+                            <div class="label-date">2020</div>
+                            <h5><a href="#">Toyota camry asv50l-jeteku</a></h5>
+                            <ul>
+                                <li><span>35,000</span> mi</li>
+                                <li>Auto</li>
+                                <li><span>700</span> hp</li>
+                            </ul>
+                        </div>
+                        <div class="car__item__price">
+                            <span class="car-option sale">For Sale</span>
+                            <h6>$73,900</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix">
+                <div class="car__item">
+                    <div class="car__item__pic__slider owl-carousel">
+                        <img src="{% static 'images/zx6r/zx6r 6.jpg' %}" alt="">
+                        <img src="{% static 'images/zx6r/zx6r 3.jpg' %}" alt="">
+                        <img src="{% static 'images/zx6r/zx6r 2.jpg' %}" alt="">
+                        <img src="{% static 'images/zx6r/zx6r 1.jpg' %}" alt="">
+                    </div>
+                    <div class="car__item__text">
+                        <div class="car__item__text__inner">
+                            <div class="label-date">2017</div>
+                            <h5><a href="#">Bmw s1000rr 2019 m</a></h5>
+                            <ul>
+                                <li><span>35,000</span> mi</li>
+                                <li>Auto</li>
+                                <li><span>700</span> hp</li>
+                            </ul>
+                        </div>
+                        <div class="car__item__price">
+                            <span class="car-option">For Rent</span>
+                            <h6>$299<span>/Month</span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix">
+                <div class="car__item">
+                    <div class="car__item__pic__slider owl-carousel">
+                        <img src="{% static 'images/zx14r/zx14r 4.jpg' %}" alt="">
+                        <img src="{% static 'images/zx14r/zx14r 3.jpg' %}" alt="">
+                        <img src="{% static 'images/zx14r/zx14r 6.jpg' %}" alt="">
+                        <img src="{% static 'images/zx14r/zx14r 7.jpg' %}" alt="">
+                    </div>
+                    <div class="car__item__text">
+                        <div class="car__item__text__inner">
+                            <div class="label-date">2018</div>
+                            <h5><a href="#">Audi q8 2020</a></h5>
+                            <ul>
+                                <li><span>35,000</span> mi</li>
+                                <li>Auto</li>
+                                <li><span>700</span> hp</li>
+                            </ul>
+                        </div>
+                        <div class="car__item__price">
+                            <span class="car-option">For Rent</span>
+                            <h6>$319<span>/Month</span></h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix sale">
+                <div class="car__item">
+                    <div class="car__item__pic__slider owl-carousel">
+                        <img src="{% static 'images/zx25r/zx25r 4.jpg' %}" alt="">
+                        <img src="{% static 'images/zx25r/zx25r 3.jpg' %}" alt="">
+                        <img src="{% static 'images/zx25r/zx25r 2.jpg' %}" alt="">
+                        <img src="{% static 'images/zx25r/zx25r 1.jpg' %}" alt="">
+                    </div>
+                    <div class="car__item__text">
+                        <div class="car__item__text__inner">
+                            <div class="label-date">2016</div>
+                            <h5><a href="#">Mustang shelby gt500</a></h5>
+                            <ul>
+                                <li><span>35,000</span> mi</li>
+                                <li>Auto</li>
+                                <li><span>700</span> hp</li>
+                            </ul>
+                        </div>
+                        <div class="car__item__price">
+                            <span class="car-option sale">For Sale</span>
+                            <h6>$730,900</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Car Section End -->
+<!-- Chooseus Section Begin -->
+<section class="chooseus spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5">
+                <div class="chooseus__text">
+                    <div class="section-title">
+                        <h2>Why People Choose Us</h2>
+                        <p>Duis aute irure dolorin reprehenderits volupta velit dolore fugiat nulla pariatur
+                            excepteur sint occaecat cupidatat.</p>
+                    </div>
+                    <ul>
+                        <li><i class="fa fa-check-circle"></i> Lorem ipsum dolor sit amet, consectetur adipiscing
+                                elit.</li>
+                        <li><i class="fa fa-check-circle"></i> Integer et nisl et massa tempor ornare vel id orci.
+                        </li>
+                        <li><i class="fa fa-check-circle"></i> Nunc consectetur ligula vitae nisl placerat tempus.
+                        </li>
+                        <li><i class="fa fa-check-circle"></i> Curabitur quis ante vitae lacus varius pretium.</li>
+                    </ul>
+                    <a href="#" class="primary-btn">About Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="chooseus__video set-bg">
+        <img src="{% static 'img/chooseus-video.png' %}" alt="">
+        <a href="https://www.youtube.com/watch?v=Xd0Ok-MkqoE" class="play-btn video-popup"><i class="fa fa-play"></i></a>
+    </div>
+</section>
+<!-- Chooseus Section End -->
+<!-- Cta Begin -->
+
+<!-- Cta End -->
+<!-- Footer Section Begin -->
+{% endblock %}

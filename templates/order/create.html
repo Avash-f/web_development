@@ -1,0 +1,20 @@
+{% extends 'layout.html' %}
+{% block content %}
+<form method="POST" action="create" enctype="multipart/form-data">
+    {% csrf_token %}
+    <label>Customer</label>
+    {{form.customer}}
+
+    <label>Bike</label>
+    {{form.kawasaki}}
+
+    <input type="submit" value="submit"/>
+</form>
+<!--to active selected tab in sidebar-->
+<script type="text/javascript">
+    $(function () {
+        $('.sidebar').find('.active').removeClass('active');
+        $('#kawasaki').addClass('active');
+    });
+</script>
+{% endblock %}
